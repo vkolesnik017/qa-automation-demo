@@ -1,0 +1,55 @@
+
+tasks.register("hello") {
+    description = "Hello world"
+    group = "javaguru"
+    doLast {
+        println "Description: ${description}, group: ${group}, action: ${actions.size()}"
+        println "Hello Gradle"
+        println "configuration: phase"
+        println "Gradle: ${gradle.hashCode()}, project: ${project.hashCode()}, rootProject: ${rootProject.hashCode()}"
+    }
+
+    doLast {
+        println "do last second"
+    }
+
+    doFirst {
+        println "Do First"
+    }
+
+    doFirst {
+        println "Do First2"
+    }
+}
+
+tasks.register("task1") {
+    group = "javaguru"
+    println "task1"
+}
+
+tasks.register("task2") {
+    group = "javaguru"
+    println "task2"
+}
+
+tasks.register("task3") {
+    group = "javaguru"
+    println "task3"
+}
+
+tasks.register("task4") {
+    group = "javaguru"
+    println "task4"
+}
+
+task2.dependsOn(task3)
+task3.dependsOn task4
+task4.finalizedBy task1
+
+gradle.taskGraph.whenReady {
+    TaskExecutionGraph graph ->
+        println "Graph: "
+        graph.allTasks.each {it ->
+            println "${it.name}"
+        }
+}

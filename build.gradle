@@ -1,0 +1,41 @@
+import java.time.LocalDate
+
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+ext {
+    javaVersion = 21
+    currentDate = LocalDate.now()
+}
+
+println "JavaVersion: ${ext.javaVersion}"
+println "CurrentTime: ${ext.currentDate}"
+
+apply from: 'script.gradle'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.testng:testng:7.10.2'
+    testImplementation 'com.codeborne:selenide:7.3.3'
+    testImplementation 'org.testng:testng:7.10.2'
+    testImplementation 'com.codeborne:selenide:7.3.3'
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+}
+
+test {
+    useTestNG()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        showStandardStreams = true
+    }
+}
+
