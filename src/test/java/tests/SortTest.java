@@ -12,7 +12,6 @@ import static org.testng.Assert.assertEquals;
 
 
 public class SortTest extends BaseTest {
-    LoginPage loginPage = new LoginPage();
     InventoryPage inventoryPage = new InventoryPage();
 
     @Test
@@ -30,7 +29,7 @@ public class SortTest extends BaseTest {
         List<Double> newList = inventoryPage.sortList(productPrices);
         assertEquals(productPrices, newList);
         //     Assert.assertTrue(!productPrices.isEmpty());
-              assertThat(productPrices).isSorted();
+        assertThat(productPrices).isSorted();
         assertThat(productPrices)
                 .isNotEmpty()
                 .allMatch(price -> price > 0);
@@ -41,6 +40,8 @@ public class SortTest extends BaseTest {
         String containsTitle = inventoryPage.findFirstItemContaining("backpack");
 
         inventoryPage.addItemToBasket("Labs");
+
+        assertEquals(inventoryPage.getBasketCount(), 1);
         System.out.println();
     }
 }
