@@ -28,7 +28,6 @@ public class SortTest extends BaseTest {
         List<Double> productPrices = inventoryPage.getPriceList();*/
         List<Double> newList = inventoryPage.sortList(productPrices);
         assertEquals(productPrices, newList);
-        //     Assert.assertTrue(!productPrices.isEmpty());
         assertThat(productPrices).isSorted();
         assertThat(productPrices)
                 .isNotEmpty()
