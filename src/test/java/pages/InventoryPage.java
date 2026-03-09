@@ -25,12 +25,21 @@ public class InventoryPage {
     private final SelenideElement basketIcon = $(By.xpath("//a[@data-test='shopping-cart-link']"));
     private final SelenideElement basketBadge = $(By.xpath("//span[@data-test='shopping-cart-badge']"));
 
+
+    private SelenideElement btnAddToBasketByPrice(String price) {
+        return $(By.xpath(String.format("//div[text()='%s']/ancestor::div[@class='inventory_item_description']//button", price)));
+    }
+
     private SelenideElement itemTitle(String title) {
         return $(By.xpath(String.format("//div[text()='%s']/..", title)));
     }
 
     private SelenideElement btnAddToCardByItemTitle(String title) {
         return $(By.xpath(String.format("//div[text()='%s']/ancestor::div[@class='inventory_item_description']//button[contains(@class,'btn_inventory')]", title)));
+    }
+
+    private SelenideElement itemTitleByPrice(String price) {
+        return $(By.xpath(String.format("//div[text()='%s']/ancestor::div[@class='inventory_item_description']//a/div", price)));
     }
 
     public InventoryPage selectSort(String option) {
@@ -56,6 +65,15 @@ public class InventoryPage {
         List<String> list = inventoryTitle.stream()
                 .map(title -> title.getText())
                 .filter(name -> name.toLowerCase().contains(text.toLowerCase()))
+                .collect(Collectors.toList());
+        return list;
+    }
+
+    public List<Double> getProductsPriceLessThan(Double price) {
+        List<Double> list = inventoryPrice.stream()
+                .map(title -> title.getText())
+                .map(name -> Double.parseDouble(name.replace("$", "")))
+                .filter(p -> p < price)
                 .collect(Collectors.toList());
         return list;
     }
@@ -105,6 +123,24 @@ public class InventoryPage {
             return Integer.parseInt(basketBadge.getText());
         }
         return 0;
+    }
+
+    public void clickOnAddBtnByPrice(List<Double> prices) {
+        prices.forEach(e -> btnAddToBasketByPrice(String.valueOf(e)).click());
+    }
+
+    public List<String> getItemItemTitleByPrice(List<Double> price) {
+        List<String> list = new ArrayList<>();
+
+        for (int i = 0; i < price.size(); i++) {
+            list.add(itemTitleByPrice(String.valueOf(price.get(i))).getText());
+        }
+        return list;
+    }
+
+    public CardPage goToBasket() {
+        getBasketIcon().click();
+        return new CardPage();
     }
 
 }

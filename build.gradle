@@ -15,7 +15,7 @@ ext {
 println "JavaVersion: ${ext.javaVersion}"
 println "CurrentTime: ${ext.currentDate}"
 
-apply from: 'script.gradle'
+//apply from: 'script.gradle'
 
 repositories {
     mavenCentral()
@@ -24,9 +24,9 @@ repositories {
 dependencies {
     testImplementation 'org.testng:testng:7.10.2'
     testImplementation 'com.codeborne:selenide:7.3.3'
-    testImplementation 'org.testng:testng:7.10.2'
-    testImplementation 'com.codeborne:selenide:7.3.3'
     testImplementation 'org.assertj:assertj-core:3.25.3'
+    testImplementation 'io.rest-assured:rest-assured:5.5.6'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
 }
 
 test {
