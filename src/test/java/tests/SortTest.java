@@ -51,7 +51,7 @@ public class SortTest extends BaseTest {
         //  проверили соритровку листа
         // add new comment
     //    assertThat(productPrices).isSorted();
-
+//dfgdfgfdggf
         // проверили, что каждый товар больше 0
     /*    assertThat(productPrices)
                 .isNotEmpty()
