@@ -49,8 +49,6 @@ public class SortTest extends BaseTest {
         assertEquals(productPrices, newList);
 
         //  проверили соритровку листа
-// new comment
-        // проверили, что каждый товар больше 0
     /*    assertThat(productPrices)
                 .isNotEmpty()
                 .allMatch(price -> price > 0);
