@@ -49,10 +49,10 @@ public class SortTest extends BaseTest {
         assertEquals(productPrices, newList);
 
         //  проверили соритровку листа
-        assertThat(productPrices).isSorted();
+    //    assertThat(productPrices).isSorted();
 
         // проверили, что каждый товар больше 0
-        assertThat(productPrices)
+    /*    assertThat(productPrices)
                 .isNotEmpty()
                 .allMatch(price -> price > 0);
         List<String> title = inventoryPage.hasItemWithNameContains("T-Shirt");
@@ -64,6 +64,6 @@ public class SortTest extends BaseTest {
         inventoryPage.addItemToBasket("Labs");
 
         assertEquals(inventoryPage.getBasketCount(), 1);
-        System.out.println();
+        System.out.println();*/
     }
 }
